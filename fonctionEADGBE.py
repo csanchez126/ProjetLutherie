@@ -3,22 +3,22 @@
 from audio import *
 from random import randint 
 from malib import *
-
+import time
 
 #===============Fonctions===================
-def analyseEADGBE():
-    global ying, x, y, check, attack, position, z
+def analyseEADGBE(ying):
+    global x, y, check, attack, position, z
     pit = 0
     p = range(24)
     for i in range(24):
-        p[i] = audio.ying.get()
+        p[i] = ying.get() # commes from the audio class.
         time.sleep(0.001)
         pit += p[i]
     pit /= 12      
     m = midiToHz(position[x][z])
     print "pit = %d and m = %d" % (pit, m)
     attack = True
-    if m > pit*0.93 and m < pit*1.06: #0.97 et 1.03 est la valeur à mi-chemin entre deux demitons
+    if m > pit*0.93 and m < pit*1.06: #0.97 et 1.03 est la valeur Ã  mi-chemin entre deux demitons
             check = True 
             
 def pigeEADGBE(): #Fonction pour la pige de note en MIDI
