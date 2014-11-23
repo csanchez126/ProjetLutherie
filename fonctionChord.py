@@ -11,7 +11,7 @@ def analyseChord():
     pit = 0
     p = range(24)
     for i in range(24):
-        p[i] = ying.get()
+        p[i] = audio.ying.get()
         time.sleep(0.001)
         pit += p[i]
     pit /= 12      
@@ -23,50 +23,49 @@ def analyseChord():
             check = True
             
 def pigeChord(): #Fonction pour la pige de note en MIDI
-    global chordType,x,y,z,chord,shape
+    global chordType,x,y,z,chord,shape, localText
     x = random.randint(0,11)
     y = random.randint(0,5)
     z = random.randint(0,1)    
     
-    #On affiche la note à jouer
-    if x == 0: 
-        print "C" 
+    if x == 0: #On affiche la note à jouer
+        localText = "C"
     elif x == 1:
-        print "C#/Db"
+        localText = "C#/Db"
     elif x == 2:
-        print "D"
+        localText = "D"
     elif x == 3:
-        print "D#/Eb"
+        localText = "D#/Eb"
     elif x == 4:
-        print "E"
+        localText = "E"
     elif x == 5:
-        print "F"
+        localText = "F"
     elif x == 6:
-        print "F#/Gb"
+        localText = "F#/Gb"
     elif x == 7:
-        print "G"
+        localText = "G"
     elif x == 8:
-        print "G#/Ab"
+        localText = "G#/Ab"
     elif x == 9:
-        print "A"
+        localText = "A"
     elif x == 10:
-        print "A#/Bb"
+        localText = "A#/Bb"
     elif x == 11:
-        print "B"
+        localText = "B"
         
     #On affiche le type d'accord maj, min, aug, dim, maj7, min7
     if y == 0: 
-        print "major" 
+        localText += " major" 
     elif y == 1:
-        print "minor"
+        localText += " minor"
     elif y == 2:
-        print "augmented"
+        localText += " augmented"
     elif y == 3:
-        print "diminished"
+        localText += " diminished"
     elif y == 4:
-        print "major 7th"
+        localText += " major 7th"
     elif y == 5:
-        print "minor 7th" 
+        localText += " minor 7th" 
     
     #On calcule les notes faisant partie de l'accord
     chord[0] = x
@@ -89,16 +88,16 @@ def pigeChord(): #Fonction pour la pige de note en MIDI
         
     #On affiche la structure de l'accord    
     if z == 0: #On garde la structure standard
-        print "C/G shape"
+        localText += "\nC/G shape"
     elif z == 1: #On utilise la structure 1-5-7/8-3
         shape = chord
         chord[0] = shape[0]
         chord[1] = shape[2]
         chord[2] = shape[3]
         chord[3] = shape[1]
-        print "A/E/D shape"
+        localText += "\nA/E/D shape"
                 
-    return chord
+    return chord, localText
             
 def testChord():
     global chord, check, attack, z

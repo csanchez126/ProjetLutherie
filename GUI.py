@@ -74,19 +74,21 @@ class MyFrame(wx.Frame):
         else:
             s.stop()
 
-    #Fonction du choix de test via le drop-down menu:
-    #   -Test=Analyse de la suite de note (s'occupe de la gestion de la sequence de notes)
-    #   -Analyse=Analyse de la freq (appele par l'attack detect)
-    #   -Pige=pige des parametres du jeu (appele a la fin de la fonction test pour redemarrer)
     def setTest(self, evt): 
         # evt.GetString() retourne le string selectionne dans la boite
         print evt.GetString()   
         self.t5.Clear()
         self.t5.WriteText(evt.GetString())
+        
         if evt.GetString() == "fonctionEADGBE.py":
-            text = pigeEADGBE()
-            self.audio.setTest(testEADGBE)  
+            EADGBEFunc = pigeEADGBE()
+            text = EADGBEFunc[1]
+            print text
+            self.t5.Clear()
+            self.t5.WriteText(text)
+            self.audio.setTest(testEADGBE)
             self.audio.setAnalyse(analyseEADGBE)
+            
         elif evt.GetString() == "fonctionInterval.py":
             intervalFunc = pigeInterval()
             text = intervalFunc[1]
@@ -95,10 +97,16 @@ class MyFrame(wx.Frame):
             self.t5.WriteText(text)
             self.audio.setTest(testInterval)
             self.audio.setAnalyse(analyseInterval)
+            
         elif evt.GetString() == "fonctionChord.py":
-            text = pigeChord()
+            ChordFunc = pigeChord()
+            text = ChordFunc[1]
+            print text
+            self.t5.Clear()
+            self.t5.WriteText(text)
             self.audio.setTest(testChord)
             self.audio.setAnalyse(analyseChord)
+            
         #Reste la fonction pige a reviser
 
 app = wx.App(False)

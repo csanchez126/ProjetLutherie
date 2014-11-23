@@ -12,7 +12,6 @@ class Audio:
         self.ying = Yin(self.a, tolerance=0.2, minfreq=50, maxfreq=800, mul=0.5)
         self.ad = AttackDetector(self.a, deltime=0.005, cutoff=1, maxthresh=1, minthresh=-45, reltime=0.006)
 
-
         self.pat = Pattern(dump, 0.02).play()
         self.add = SDelay(self.ad, 0.010)
         self.tf = TrigFunc(self.ad, dump)

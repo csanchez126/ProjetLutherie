@@ -33,8 +33,6 @@ dim = [1, 4, 7, 1]  #1,3b,5b,1
 maj7 = [1,5,8,12] #1,3,5,7
 min7 = [1,4,8,11] #1,3b,5,7b
 chordType = [maj, min, aug, dim, maj7, min7]
-shape13 = [0,1,2,3] #Liste pour la structure de l'accord
-shape15 = [0,2,1,3]
 shape = [0,0,0,0]
 chord = [0,0,0,0] #Liste pour les notes de l'accord
 
