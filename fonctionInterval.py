@@ -8,14 +8,12 @@ from malib import *
 def analyseInterval():
     global z, check, attack, interval, laNote
     pit = 0
-    p = range(24)
-    for i in range(24):
-        p[i] = audio.ying.get()
-        print p[i]
-        time.sleep(0.001)
+    p = range(12)
+    for i in range(12):
+        p[i] = ying.get()
+        time.sleep(0.005)
         pit += p[i]
-    pit /= 12
-    print pit      
+    pit /= 6    
     octave = midiToHz(laNote[interval[z]])
     #print "pit = %d and m = %d" % (pit, m)
     attack = True
@@ -89,19 +87,28 @@ def testInterval():
     if attack is True:
         print "att"
         if check == True and z == 1:
-            print "BRAVO!"
+            localResult = "BRAVO!"
+            print localResult
             z = 0
             check = False
             attack = False
             pigeInterval()
+            return localResult
         elif check == True:
-            print "CHECK!"
+            localResult = "CHECK!"
+            print localResult
             z += 1
             check = False
             attack = False
+            return localResult
         elif check == False:
-            print "RECOMMENCEZ!"
+            localResult = "RECOMMENCEZ!"
+            print localResult
             z = 0
             attack = False
             check = False
-
+            return localResult            
+        else:
+            localResult = "False"
+            return localResult
+            

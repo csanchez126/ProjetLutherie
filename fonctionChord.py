@@ -3,18 +3,20 @@
 from pyo import *
 from random import randint 
 from malib import *
+from audio import *
 
 
 #===============Fonctions===================
-def analyseChord():
-    global ying, z, check, attack, chord, laNote
+def analyseChord(audio, ying):
+    global z, check, attack, chord, laNote
     pit = 0
-    p = range(24)
-    for i in range(24):
-        p[i] = audio.ying.get()
-        time.sleep(0.001)
+    p = range(12)
+    for i in range(12):
+        p[i] = audio.getFreq()
+        print p[i]
+        time.sleep(0.5)
         pit += p[i]
-    pit /= 12      
+    pit /= 6      
     octave= midiToHz(laNote[chord[z]])
     print "pit = %d and m = %d" % (pit, octave[3])
     attack = True
@@ -97,25 +99,35 @@ def pigeChord(): #Fonction pour la pige de note en MIDI
         chord[3] = shape[1]
         localText += "\nA/E/D shape"
                 
+    z = 0
     return chord, localText
             
 def testChord():
     global chord, check, attack, z
     if attack is True:
         if check == True and z == 3:
-            print "BRAVO!"
+            localResult = 1 #"BRAVO!"
+            print localResult
             z = 0
             check = False
             attack = False
             pigeChord()
+            return localResult
         elif check == True:
-            print "CHECK!"
+            localResult = 2 #"CHECK!"
+            print localResult
             z += 1
             check = False
             attack = False
+            return localResult
         elif check == False:
-            print "RECOMMENCEZ!"
+            localResult = 3 #"RECOMMENCEZ!"
+            print localResult
             z = 0
             attack = False
             check = False
-
+            return localResult            
+        else:
+            localResult = "False"
+            return localResult
+            

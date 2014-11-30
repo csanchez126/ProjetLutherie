@@ -16,16 +16,19 @@ class MyFrame(wx.Frame):
         self.panel = wx.Panel(self)
         self.panel.SetBackgroundColour("#DDDDDD")
 
-        self.audio = Audio()
+        self.audio = Audio(self)
         
         self.onOffText = wx.StaticText(self.panel, id=-1, label="Audio", 
                                        pos=(28,10), size=wx.DefaultSize)
         self.onOff = wx.ToggleButton(self.panel, id=-1, label="on / off", 
                                      pos=(10,28), size=wx.DefaultSize)
+        self.incZ = wx.ToggleButton(self.panel, id=-1, label="Attack/Analyse", 
+                                     pos=(10,150), size=wx.DefaultSize)
         
 
         # Un event du toggle appelle la methode self.handleAudio
         self.onOff.Bind(wx.EVT_TOGGLEBUTTON, self.handleAudio)
+        self.incZ.Bind(wx.EVT_TOGGLEBUTTON, self.plusOne)
         
         # os.listdir(path) retourne tous les fichiers dans le dossier "path"
         # os.getcwd() retourne le repertoire courant.
@@ -60,13 +63,18 @@ class MyFrame(wx.Frame):
     
         #Boite de texte 
         self.l5 = wx.StaticText(self.panel, id=-1, label="Test Positions", pos=(230,10), size=wx.DefaultSize)
-        t5 = wx.TextCtrl(self.panel, -1,"0123456789\n", pos=(230,30),size=(150, 50),
+        self.t5 = wx.TextCtrl(self.panel, -1,"0123456789\n", pos=(230,30),size=(150, 50),
                       style = wx.TE_MULTILINE
                          #| wx.TE_RICH
                          | wx.TE_RICH2
                          )
-        self.t5 = t5
         
+    def plusOne(self, evt):
+        global attack, check
+        if evt.GetInt() == 1 or evt.GetInt() == 0:
+            attack = True
+            check = True
+            
     def handleAudio(self, evt):
         # evt.GetInt() retourne 1 si le toggle est a on, 0 s'il est a off
         if evt.GetInt() == 1:
@@ -75,8 +83,9 @@ class MyFrame(wx.Frame):
             s.stop()
 
     def setTest(self, evt): 
-        # evt.GetString() retourne le string selectionne dans la boite
-        print evt.GetString()   
+        global functionChoice
+        print evt.GetString()
+        functionChoice = evt.GetString()
         self.t5.Clear()
         self.t5.WriteText(evt.GetString())
         
@@ -97,18 +106,31 @@ class MyFrame(wx.Frame):
             self.t5.WriteText(text)
             self.audio.setTest(testInterval)
             self.audio.setAnalyse(analyseInterval)
-            
+
         elif evt.GetString() == "fonctionChord.py":
-            ChordFunc = pigeChord()
-            text = ChordFunc[1]
+            chordFunc = pigeChord()
+            text = chordFunc[1]
             print text
             self.t5.Clear()
             self.t5.WriteText(text)
             self.audio.setTest(testChord)
-            self.audio.setAnalyse(analyseChord)
-            
+            self.audio.setAnalyse(analyseChord)      
         #Reste la fonction pige a reviser
 
+    def loopTest(self):
+        global functionChoice
+        self.t5.Clear()
+        self.t5.WriteText(functionChoice)
+        self.audio.setTest(functionChoice)
+        self.audio.setAnalyse(functionChoice)
+    
+    def printTextBox(self, text):
+        self.t5.WriteText("\n")
+        self.t5.WriteText(text)
+        
+        
+        
+    
 app = wx.App(False)
 mainFrame = MyFrame(None, title='Simple App', pos=(100,100), size=(800,600))
 mainFrame.Show()
