@@ -22,20 +22,21 @@ def analyseEADGBE(ying):
             check = True 
             
 def pigeEADGBE(): #Fonction pour la pige de note en MIDI
-    global x
+    global x, z
     x = random.randint(0,5)
     if x == 0:
-        localText = "Jouez la sequence aux cordes ouvertes"
+        localText = "Play the open string sequence"
     elif x == 1:
-        localText = "Jouez la sequence a la 3eme case"
+        localText = "Play the sequence at the 3rd fret"
     elif x == 2:
-        localText = "Jouez la sequence a la 5eme case"
+        localText = "Play the sequence at the 5th fret"
     elif x == 3:
-        localText = "Jouez la sequence a la 7eme case"
+        localText = "Play the sequence at the 7th fret"
     elif x == 4:
-        localText = "Jouez la sequence a la 10eme case"
+        localText = "Play the sequence at the 10th fret"
     elif x == 5:
-        localText = "Jouez la sequence a la 12eme case"
+        localText = "Play the sequence at the 12th fret"
+    z = 0 #On reset le compteur de notes
     return x, localText
  
 def testEADGBE():
@@ -63,7 +64,9 @@ def testEADGBE():
             attack = False
             check = False
             return localResult            
-        else:
-            localResult = "False"
-            return localResult
+
             
+def setTrue():
+    global attack, check
+    attack = True 
+    check = True 

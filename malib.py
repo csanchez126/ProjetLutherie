@@ -26,12 +26,12 @@ pos5 = [E[3],A[3],D[4],G[4],B[4],E[5]] #Fret 12
 position = [pos0, pos1, pos2, pos3, pos4, pos5]
 
 #Listes pour le test des accords
-maj = [1, 5, 8, 1]  #1,3,5,1
-min = [1, 4, 8, 1]  #1,3b,5,1
-aug = [1, 5, 9, 1]  #1,3,5#,1
-dim = [1, 4, 7, 1]  #1,3b,5b,1
-maj7 = [1,5,8,12] #1,3,5,7
-min7 = [1,4,8,11] #1,3b,5,7b
+maj = [0, 4, 7, 0]  #1,3,5,1
+min = [0, 3, 7, 0]  #1,3b,5,1
+aug = [0, 4, 8, 0]  #1,3,5#,1
+dim = [0, 3, 6, 0]  #1,3b,5b,1
+maj7 = [0,4,7,11] #1,3,5,7
+min7 = [0,3,7,10] #1,3b,5,7b
 chordType = [maj, min, aug, dim, maj7, min7]
 shape = [0,0,0,0]
 chord = [0,0,0,0] #Liste pour les notes de l'accord
@@ -43,4 +43,4 @@ attack = False # Variable pour valider une attaque
 check = False #Variable pour valider la note jouee
 noteOk = False #Variable pour valider la note jouee
 interval = [0,0] #Variable pour l'intervale: premiere valeur = tonalite, la seconde = l'equart
-functionChoice = " "
+

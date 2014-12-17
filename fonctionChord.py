@@ -7,18 +7,16 @@ from audio import *
 
 
 #===============Fonctions===================
-def analyseChord(audio, ying):
+def analyseChord(ying):
     global z, check, attack, chord, laNote
     pit = 0
     p = range(12)
     for i in range(12):
-        p[i] = audio.getFreq()
-        print p[i]
-        time.sleep(0.5)
+        p[i] = ying.get()
+        time.sleep(0.02)
         pit += p[i]
     pit /= 6      
     octave= midiToHz(laNote[chord[z]])
-    print "pit = %d and m = %d" % (pit, octave[3])
     attack = True
     for m in octave:
         if m > pit*0.94 and m < pit*1.06: #0.97 et 1.03 est la valeur à mi-chemin entre deux demitons
@@ -28,7 +26,7 @@ def pigeChord(): #Fonction pour la pige de note en MIDI
     global chordType,x,y,z,chord,shape, localText
     x = random.randint(0,11)
     y = random.randint(0,5)
-    z = random.randint(0,1)    
+    i = random.randint(0,1)    
     
     if x == 0: #On affiche la note à jouer
         localText = "C"
@@ -71,27 +69,27 @@ def pigeChord(): #Fonction pour la pige de note en MIDI
     
     #On calcule les notes faisant partie de l'accord
     chord[0] = x
-    if (chord[0]+chordType[y][1])>12: #On calcule la tierce
+    if (chord[0]+chordType[y][1]) >= 12: #On calcule la tierce
         chord[1] = chord[0]+chordType[y][1]-12
     else:
-        chord[1] += chordType[y][1]
+        chord[1] = chord[0]+chordType[y][1]
         
-    if (chord[0]+chordType[y][2])>12: #On calcule la quinte
+    if (chord[0]+chordType[y][2]) >= 12: #On calcule la quinte
         chord[2] = chord[0]+chordType[y][2]-12
     else:
-        chord[2] += chordType[y][2]
+        chord[2] = chord[0]+chordType[y][2]
         
-    if (chord[0]+chordType[y][3])>12 and chordType[y][3] != 1: #On calcule l'octave ou la septieme
+    if (chord[0]+chordType[y][3]) >= 12 and chordType[y][3] != 0: #On calcule l'octave ou la septieme
         chord[3] = chord[0]+chordType[y][3]-12        
-    elif chordType[y][3] != 1:
-        chord[3] += chordType[y][3]
+    elif chordType[y][3] != 0:
+        chord[3] = chord[0]+chordType[y][3]
     else:
         chord[3] = chord[0]
         
     #On affiche la structure de l'accord    
-    if z == 0: #On garde la structure standard
+    if i == 0: #On garde la structure standard
         localText += "\nC/G shape"
-    elif z == 1: #On utilise la structure 1-5-7/8-3
+    elif i == 1: #On utilise la structure 1-5-7/8-3
         shape = chord
         chord[0] = shape[0]
         chord[1] = shape[2]
@@ -99,14 +97,14 @@ def pigeChord(): #Fonction pour la pige de note en MIDI
         chord[3] = shape[1]
         localText += "\nA/E/D shape"
                 
-    z = 0
+    z = 0 #On reset le compteur de notes
     return chord, localText
             
 def testChord():
-    global chord, check, attack, z
+    global check, attack, z
     if attack is True:
         if check == True and z == 3:
-            localResult = 1 #"BRAVO!"
+            localResult = "BRAVO!"
             print localResult
             z = 0
             check = False
@@ -114,20 +112,18 @@ def testChord():
             pigeChord()
             return localResult
         elif check == True:
-            localResult = 2 #"CHECK!"
+            localResult = "CHECK!"
             print localResult
             z += 1
             check = False
             attack = False
             return localResult
         elif check == False:
-            localResult = 3 #"RECOMMENCEZ!"
+            localResult = "RECOMMENCEZ!"
             print localResult
             z = 0
             attack = False
             check = False
             return localResult            
-        else:
-            localResult = "False"
-            return localResult
+
             

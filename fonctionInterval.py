@@ -5,12 +5,13 @@ from random import randint
 from malib import *
 
 #===============Fonctions===================
-def analyseInterval():
+def analyseInterval(ying):
     global z, check, attack, interval, laNote
     pit = 0
     p = range(12)
     for i in range(12):
         p[i] = ying.get()
+        print p[i]
         time.sleep(0.005)
         pit += p[i]
     pit /= 6    
@@ -72,20 +73,19 @@ def pigeInterval(): #Fonction pour la pige de note en MIDI
     elif y == 11:
         localText += " major 7th"
         
-    if (x+y)>12:
+    if (x+y)>=12:
         y = x+y-12
     else:
         y += x
     interval[0] = x       
     interval[1] = y
-    print interval 
-    print localText   
+    z = 0 #On reset le compteur de notes
+
     return interval, localText
             
 def testInterval():
     global interval, check, attack, z
     if attack is True:
-        print "att"
         if check == True and z == 1:
             localResult = "BRAVO!"
             print localResult
@@ -98,6 +98,7 @@ def testInterval():
             localResult = "CHECK!"
             print localResult
             z += 1
+            print z
             check = False
             attack = False
             return localResult
@@ -108,7 +109,3 @@ def testInterval():
             attack = False
             check = False
             return localResult            
-        else:
-            localResult = "False"
-            return localResult
-            
