@@ -25,24 +25,18 @@ class Audio:
         if self.testCallback != None:
             self.result = self.testCallback()
             if self.result == "BRAVO!":
-                self.parent.textbox2.Clear()
-                self.parent.printTextBox2(self.result)
-                self.parent.fontColor2(30, "GREEN")
+                self.parent.printTextBox(self.parent.textboxes[1], self.result, 30, "GREEN")
                 self.snd = "snds/goodAnswer.aif"
                 self.sf = SfPlayer(self.snd, speed=[2,2], loop=False, mul=.2).out()
                 self.parent.loopTest()
                 
             elif self.result == "CHECK!":
-                self.parent.textbox2.Clear()
-                self.parent.printTextBox2(self.result)
-                self.parent.fontColor2(30, "YELLOW")
+                self.parent.printTextBox(self.parent.textboxes[1], self.result, 30, "YELLOW")
                 self.snd = "snds/goodAnswer.aif"
                 self.sf = SfPlayer(self.snd, speed=[1,1], loop=False, mul=.4).out()
                 
             elif self.result == "RECOMMENCEZ!":
-                self.parent.textbox2.Clear()
-                self.parent.printTextBox2(self.result)
-                self.parent.fontColor2(30, "RED")
+                self.parent.printTextBox(self.parent.textboxes[1], self.result, 30, "RED")
                 self.snd = "snds/wrongAnswer.aif"
                 self.sf = SfPlayer(self.snd, speed=[1,1], loop=False, mul=.1).out()
 
