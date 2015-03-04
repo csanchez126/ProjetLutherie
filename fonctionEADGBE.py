@@ -25,17 +25,17 @@ def pigeEADGBE(): #Fonction pour la pige de note en MIDI
     global x, z
     x = random.randint(0,5)
     if x == 0:
-        localText = "Play the open string sequence"
+        localText = "Open string"
     elif x == 1:
-        localText = "Play the sequence at the 3rd fret"
+        localText = "3rd fret"
     elif x == 2:
-        localText = "Play the sequence at the 5th fret"
+        localText = "5th fret"
     elif x == 3:
-        localText = "Play the sequence at the 7th fret"
+        localText = "7th fret"
     elif x == 4:
-        localText = "Play the sequence at the 10th fret"
+        localText = "10th fret"
     elif x == 5:
-        localText = "Play the sequence at the 12th fret"
+        localText = "12th fret"
     z = 0 #On reset le compteur de notes
     return x, localText
  
@@ -65,7 +65,7 @@ def testEADGBE():
             check = False
             return localResult            
 
-            
+#Debug Function            
 def setTrue():
     global attack, check
     attack = True 

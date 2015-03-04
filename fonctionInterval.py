@@ -24,8 +24,8 @@ def analyseInterval(ying):
             
 def pigeInterval(): #Fonction pour la pige de note en MIDI
     global interval,x,y,z
-    x = random.randint(0,11)
-    y = random.randint(1,11)    
+    x = random.choice(notePool)
+    y = random.choice(settingsPool)+1   
     if x == 0: #On affiche la note à jouer
         localText = "C"
     elif x == 1:
@@ -109,3 +109,4 @@ def testInterval():
             attack = False
             check = False
             return localResult            
+            

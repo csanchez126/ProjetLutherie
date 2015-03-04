@@ -43,6 +43,6 @@ attack = False # Variable pour valider une attaque
 check = False #Variable pour valider la note jouee
 noteOk = False #Variable pour valider la note jouee
 interval = [0,0] #Variable pour l'intervale: premiere valeur = tonalite, la seconde = l'equart
-notePool = [1,1,1,1,1,1,1,1,1,1,1,1]
-settingsPool = [1,1,1,1,1,1,1,1,1,1]
+notePool = []
+settingsPool = []
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 from pyo import *
-from random import randint 
+from random import *
 from malib import *
 from audio import *
 
@@ -24,7 +24,7 @@ def analyseChord(ying):
             
 def pigeChord(): #Fonction pour la pige de note en MIDI
     global chordType,x,y,z,chord,shape, localText
-    x = random.randint(0,11)
+    x = random.choice(notePool)
     y = random.randint(0,5)
     i = random.randint(0,1)    
     
@@ -55,17 +55,17 @@ def pigeChord(): #Fonction pour la pige de note en MIDI
         
     #On affiche le type d'accord maj, min, aug, dim, maj7, min7
     if y == 0: 
-        localText += " major" 
+        localText += " Major" 
     elif y == 1:
-        localText += " minor"
+        localText += " Minor"
     elif y == 2:
-        localText += " augmented"
+        localText += " Augmented"
     elif y == 3:
-        localText += " diminished"
+        localText += " Diminished"
     elif y == 4:
-        localText += " major 7th"
+        localText += " Maj 7th"
     elif y == 5:
-        localText += " minor 7th" 
+        localText += " Minor 7th" 
     
     #On calcule les notes faisant partie de l'accord
     chord[0] = x
@@ -126,4 +126,3 @@ def testChord():
             check = False
             return localResult            
 
-            

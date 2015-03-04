@@ -25,20 +25,23 @@ class Audio:
         if self.testCallback != None:
             self.result = self.testCallback()
             if self.result == "BRAVO!":
-                self.parent.printTextBox(self.parent.textboxes[1], self.result, 30, "GREEN")
+                #self.parent.printTextBox(self.parent.textboxes[1], self.result, 30, "GREEN")
                 self.snd = "snds/goodAnswer.aif"
                 self.sf = SfPlayer(self.snd, speed=[2,2], loop=False, mul=.2).out()
+                self.parent.displayImage.SetBitmap(self.parent.bravoBMP)
                 self.parent.loopTest()
                 
             elif self.result == "CHECK!":
-                self.parent.printTextBox(self.parent.textboxes[1], self.result, 30, "YELLOW")
+                #self.parent.printTextBox(self.parent.textboxes[1], self.result, 30, "YELLOW")
                 self.snd = "snds/goodAnswer.aif"
                 self.sf = SfPlayer(self.snd, speed=[1,1], loop=False, mul=.4).out()
+                self.parent.displayImage.SetBitmap(self.parent.checkBMP)
                 
             elif self.result == "RECOMMENCEZ!":
-                self.parent.printTextBox(self.parent.textboxes[1], self.result, 30, "RED")
+                #self.parent.printTextBox(self.parent.textboxes[1], self.result, 30, "RED")
                 self.snd = "snds/wrongAnswer.aif"
                 self.sf = SfPlayer(self.snd, speed=[1,1], loop=False, mul=.1).out()
+                self.parent.displayImage.SetBitmap(self.parent.wrongBMP)
 
     def doAnalyse(self):
         "Function called by the TrigFunc object."
