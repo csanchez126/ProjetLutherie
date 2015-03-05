@@ -1,5 +1,6 @@
 from pyo import *
 from malib import*
+import time
 
 pa_list_devices()
 class Audio:
@@ -19,7 +20,14 @@ class Audio:
         self.pat = Pattern(self.doTest, 0.02).play()
         self.add = SDelay(self.ad, 0.25)
         self.tf = TrigFunc(self.add, self.doAnalyse)
-        
+ 
+    def onQuit(self):
+        "Shutdown the audio server before quiting the application."
+        self.s.stop()
+        time.sleep(0.1)
+        self.s.shutdown()
+        time.sleep(0.1)
+
     def doTest(self):
         "Function called by the Pattern object."
         if self.testCallback != None:

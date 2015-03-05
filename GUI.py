@@ -135,10 +135,18 @@ class MyFrame(wx.Frame):
         self.mainBox.Add(self.textboxPanel, 1, wx.ALL|wx.EXPAND, 5)
         self.panel.SetSizer(self.mainBox)
 
+        # Bind le "X" de la fenetre a la methode OnClose
+        self.Bind(wx.EVT_CLOSE, self.OnClose)
+
         self.SetMinSize((700, 650))
         self.SetSize((701,701))
 
     #==================================METHODS==========================================
+    def OnClose(self, evt):
+        "Shutdown the audio server and destroy the window."
+        self.audio.onQuit()
+        self.Destroy()
+
     def setTest(self, evt): 
         print evt.GetId()
         self.chosenPige = evt.GetId()
