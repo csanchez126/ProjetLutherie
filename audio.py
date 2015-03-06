@@ -24,9 +24,7 @@ class Audio:
     def onQuit(self):
         "Shutdown the audio server before quiting the application."
         self.s.stop()
-        time.sleep(0.1)
-        self.s.shutdown()
-        time.sleep(0.1)
+        time.sleep(0.25)
 
     def doTest(self):
         "Function called by the Pattern object."
