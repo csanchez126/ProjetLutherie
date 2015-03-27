@@ -26,15 +26,21 @@ pos5 = [E[3],A[3],D[4],G[4],B[4],E[5]] #Fret 12
 position = [pos0, pos1, pos2, pos3, pos4, pos5]
 
 #Listes pour le test des accords
-maj = [0, 4, 7, 0]  #1,3,5,1
-min = [0, 3, 7, 0]  #1,3b,5,1
-aug = [0, 4, 8, 0]  #1,3,5#,1
-dim = [0, 3, 6, 0]  #1,3b,5b,1
-maj7 = [0,4,7,11] #1,3,5,7
-min7 = [0,3,7,10] #1,3b,5,7b
-chordType = [maj, min, aug, dim, maj7, min7]
-shape = [0,0,0,0]
+maj = [0, 4, 7, 0]           #1,3,5,1
+min = [0, 3, 7, 0]          #1,3b,5,1
+aug = [0, 4, 8, 0]          #1,3,5#,1
+dim7 = [0, 3, 6, 10]   #1,3b,5b,7b
+maj7 = [0,4,7,11]         #1,3,5,7
+dom7 = [0,3,7,11]       #1,3,5,7b
+mmaj7 = [0,4,7,10]     #1,3,5,7b
+mmin7 = [0,3,7,10]    #1,3b,5,7b
+maj6 = [0, 4, 7, 9]        #1,3,5,6
+min6 = [0, 3, 7, 9]       #1,3b,5,6
+sus2 = [0, 2, 7, 0]        #1,2,5,1
+sus4 = [0, 5, 7, 0]         #1,4,5,1
+chordType = [maj, min, aug, dim7, maj7, dom7, mmaj7, mmin7, maj6, min6, sus2, sus4]
 chord = [0,0,0,0] #Liste pour les notes de l'accord
+chordHint = ["1,3,5,1", "1,3b,5,1","1,3,5#,1","1,3b,5b,7b", "1,3,5,7", "1,3,5,7b", "1,3,5,7b", "1,3b,5,7b", "1,3,5,6", "1,3b,5,6", "1,2,5,1", "1,4,5,1"]
 
 x = 0 #Variable pour la note a piger 
 y = 0 #Variable pour l'octave de la note pigee
@@ -45,4 +51,6 @@ noteOk = False #Variable pour valider la note jouee
 interval = [0,0] #Variable pour l'intervale: premiere valeur = tonalite, la seconde = l'equart
 notePool = []
 settingsPool = []
+tuning = 0
+relative = 1
 

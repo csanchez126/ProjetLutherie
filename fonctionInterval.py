@@ -51,27 +51,27 @@ def pigeInterval(): #Fonction pour la pige de note en MIDI
     elif x == 11:
         localText = "B"
     if y == 1: #On affiche la note à jouer
-        localText += " minor 2nd" 
+        localText2 = "Minor 2nd" 
     elif y == 2:
-        localText += " major 2nd"
+        localText2 = "Major 2nd"
     elif y == 3:
-        localText += " minor 3rd"
+        localText2 = "Minor 3rd"
     elif y == 4:
-        localText += " major 3rd"
+        localText2 = "Major 3rd"
     elif y == 5:
-        localText += " perfect 4th"
+        localText2 = "Perfect 4th"
     elif y == 6:
-        localText += " augmented 4th"
+        localText2 = "Augmented 4th"
     elif y == 7:
-        localText += " perfect 5th"
+        localText2 = "Perfect 5th"
     elif y == 8:
-        localText += " minor 6th"
+        localText2 = "Minor 6th"
     elif y == 9:
-        localText += " major 6th"
+        localText2 = "Major 6th"
     elif y == 10:
-        localText += " minor 7th"
+        localText2 = "Minor 7th"
     elif y == 11:
-        localText += " major 7th"
+        localText2 = "Major 7th"
         
     if (x+y)>=12:
         y = x+y-12
@@ -81,7 +81,7 @@ def pigeInterval(): #Fonction pour la pige de note en MIDI
     interval[1] = y
     z = 0 #On reset le compteur de notes
 
-    return interval, localText
+    return interval, localText, localText2
             
 def testInterval():
     global interval, check, attack, z

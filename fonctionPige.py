@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 from pyo import *
+from audio import *
 from random import randint 
 from malib import *
 
@@ -22,10 +23,16 @@ def analyseNote(ying):
             check = True
             
 def pigeNote(): #Fonction pour la pige de note en MIDI
-    global laNote,x,y,z
-    x = random.randint(0,11)
+    global laNote,x,y,z, tuning, notePool, relative
+    x = random.choice(notePool)
     y = random.randint(0,7)
-    
+    print tuning
+    if relative == 2: #Tuning relative
+        if (x + tuning) < 0:
+            x = x+12-tuning
+        else:
+            x += tuning
+    print tuning
     if x == 0: #On affiche la note à jouer
         localText = "Play any C"
     elif x == 1:
@@ -50,9 +57,18 @@ def pigeNote(): #Fonction pour la pige de note en MIDI
         localText = "Play any A#/Bb"
     elif x == 11:
         localText = "Play any B"
-    #print localText
+    
+    if relative == 1: #Standard relative
+        print "hey"
+        if (x + tuning) < 0:
+            x = x+12-tuning
+        else:
+            x += tuning
+        
+    print x
     z=0
-    return x, localText
+    localText2=""
+    return x, localText, localText2
         
 def testNote():
     global check, attack, z

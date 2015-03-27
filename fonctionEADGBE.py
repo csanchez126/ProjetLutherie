@@ -25,19 +25,20 @@ def pigeEADGBE(): #Fonction pour la pige de note en MIDI
     global x, z
     x = random.randint(0,5)
     if x == 0:
-        localText = "Open string"
+        localText = "Open\nstring"
     elif x == 1:
-        localText = "3rd fret"
+        localText = "3rd\nfret"
     elif x == 2:
-        localText = "5th fret"
+        localText = "5th\nfret"
     elif x == 3:
-        localText = "7th fret"
+        localText = "7th\nfret"
     elif x == 4:
-        localText = "10th fret"
+        localText = "10th\nfret"
     elif x == 5:
-        localText = "12th fret"
+        localText = "12th\nfret"
     z = 0 #On reset le compteur de notes
-    return x, localText
+    localText2 = ""
+    return x, localText, localText2
  
 def testEADGBE():
     global check, attack,z 

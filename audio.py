@@ -3,10 +3,14 @@ from malib import*
 import time
 
 pa_list_devices()
+print pa_get_default_output()
+print pa_get_default_input()
 class Audio:
     def __init__(self, parent):
         self.parent = parent
-        self.s = Server(sr=44100, nchnls=2, buffersize=512, duplex=1).boot()
+        self.s = Server(sr=44100, nchnls=2, buffersize=512, duplex=1)
+        self.s.setInOutDevice(8)
+        self.s.boot()
         self.s.start()
         # test and analyse callbacks initilized to None (easy to filter)
         self.testCallback = None
@@ -23,8 +27,11 @@ class Audio:
  
     def onQuit(self):
         "Shutdown the audio server before quiting the application."
+        self.pat.stop()
         self.s.stop()
-        time.sleep(0.25)
+        time.sleep(0.5)
+        self.s.shutdown()
+        time.sleep(0.5)
 
     def doTest(self):
         "Function called by the Pattern object."
