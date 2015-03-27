@@ -27,12 +27,7 @@ def pigeNote(): #Fonction pour la pige de note en MIDI
     x = random.choice(notePool)
     y = random.randint(0,7)
     print tuning
-    if relative == 2: #Tuning relative
-        if (x + tuning) < 0:
-            x = x+12-tuning
-        else:
-            x += tuning
-    print tuning
+    
     if x == 0: #On affiche la note à jouer
         localText = "Play any C"
     elif x == 1:
@@ -59,7 +54,6 @@ def pigeNote(): #Fonction pour la pige de note en MIDI
         localText = "Play any B"
     
     if relative == 1: #Standard relative
-        print "hey"
         if (x + tuning) < 0:
             x = x+12-tuning
         else:
