@@ -19,16 +19,20 @@ def analyseNote(ying):
     #print "pit = %d and m = %d" % (pit, octave[3])
     attack = True
     for m in octave:
-        if m > pit*0.94 and m < pit*1.06: #0.97 et 1.03 est la valeur à mi-chemin entre deux demitons
+        if m > pit*0.94 and m < pit*1.06: #0.97 et 1.03 est la valeur Ã  mi-chemin entre deux demitons
             check = True
             
 def pigeNote(): #Fonction pour la pige de note en MIDI
-    global laNote,x,y,z, tuning, notePool, relative
+    global laNote,x,y,z, notePool
     x = random.choice(notePool)
     y = random.randint(0,7)
-    print tuning
-    
-    if x == 0: #On affiche la note à jouer
+
+    tuning = getTuning()
+    print tuning 
+    relative = getRelative()
+    print relative
+
+    if x == 0: #On affiche la note Ã  jouer
         localText = "Play any C"
     elif x == 1:
         localText = "Play any C#"

@@ -54,3 +54,16 @@ settingsPool = []
 tuning = 0
 relative = 1
 
+def setTuning(x):
+    global tuning
+    tuning = x
+
+def getTuning():
+    return tuning
+
+def setRelative(x):
+    global relative
+    relative = x
+    
+def getRelative():
+    return relative

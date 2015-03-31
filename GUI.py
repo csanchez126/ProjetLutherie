@@ -164,16 +164,17 @@ class MyFrame(wx.Frame):
 
     #==================================METHODS==========================================
     def setRelative(self, evt):
-        global relative
+        #global relative
         if self.menu2.IsChecked(200):
             relative = 1
             print "StandardRelative"
         elif self.menu2.IsChecked(201):
             relative = 2
             print "Tuning Relative"
+        setRelative(relative)
       
     def setTuning(self, evt):
-        global tuning
+        #global tuning
         if evt.GetId() == 300:
             tuning = -4
         elif evt.GetId() == 301:
@@ -192,6 +193,7 @@ class MyFrame(wx.Frame):
             tuning = 3
         elif evt.GetId() == 308:
             tuning = 4
+        setTuning(tuning)
         print tuning
 
     def OnClose(self, evt):
